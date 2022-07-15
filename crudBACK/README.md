@@ -43,4 +43,25 @@
 }
 ```
 
-
+## Products
+1. Create: http://localhost:8080/producto/create
+ ```bash
+  {
+    "nombre": "Pie",
+    "precio": 61
+  }
+```
+2. listar: http://localhost:8080/producto/create
+ ```bash
+  {
+    "nombre": "Pie",
+    "precio": 61
+  }
+```
+3. Listar por Id: http://localhost:8080/producto/create
+ ```bash
+  {
+    "nombre": "Pie",
+    "precio": 61
+  }
+```

@@ -37,7 +37,7 @@ public class ProductoService {
     }
 
     public boolean existsById(int id){
-        return !productoRepository.existsById(id);
+        return productoRepository.existsById(id);
     }
 
     public boolean existsByNombre(String nombre){
