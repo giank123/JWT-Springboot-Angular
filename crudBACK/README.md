@@ -51,17 +51,12 @@
     "precio": 61
   }
 ```
-2. listar: http://localhost:8080/producto/create
+2. Update: http://localhost:8080/producto/update/1
  ```bash
   {
     "nombre": "Pie",
-    "precio": 61
+    "precio": 60
   }
 ```
-3. Listar por Id: http://localhost:8080/producto/create
- ```bash
-  {
-    "nombre": "Pie",
-    "precio": 61
-  }
-```
+3. Listar: http://localhost:8080/producto/lista
+4. Delete By Id:  http://localhost:8080/producto/delete/2
