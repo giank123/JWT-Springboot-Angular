@@ -66,19 +66,22 @@ public class AuthController {
         return new ResponseEntity(new Mensaje("usuario guardado"), HttpStatus.CREATED);
     }
 
-
     @PostMapping("/login")
     public ResponseEntity<JwtDto> login(@Valid @RequestBody LoginUsuario loginUsuario, BindingResult bindingResult){
         if(bindingResult.hasErrors())
             return new ResponseEntity(new Mensaje("campos mal puestos"), HttpStatus.BAD_REQUEST);
         Authentication authentication =
                 authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginUsuario.getNombreUsuario(), loginUsuario.getPassword()));
+
         //autenticamos al usuario con el login.
         SecurityContextHolder.getContext().setAuthentication(authentication);
+
         //Apartir de la autenticacion , generamos el token
         String jwt = jwtProvider.generateToken(authentication);
+
         //Nombre de usuario
         UserDetails userDetails = (UserDetails)authentication.getPrincipal();
+
         //Creamos el JWTDto
         JwtDto jwtDto = new JwtDto(jwt, userDetails.getUsername(), userDetails.getAuthorities());
         return new ResponseEntity(jwtDto, HttpStatus.OK);

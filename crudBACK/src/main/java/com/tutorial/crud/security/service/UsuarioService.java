@@ -7,8 +7,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
-//Transaccional , si hay algun error hace un rollback
 
+//Transaccional , si hay algun error hace un rollback
 @Service
 @Transactional
 public class UsuarioService {
@@ -31,5 +31,4 @@ public class UsuarioService {
     public void save(Usuario usuario){
         usuarioRepository.save(usuario);
     }
-
 }

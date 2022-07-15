@@ -1,7 +1,6 @@
 package com.tutorial.crud.security.entity;
 
 import com.tutorial.crud.security.enums.RolNombre;
-import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -11,7 +10,7 @@ public class Rol {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @javax.validation.constraints.NotNull
+    @NotNull
     @Enumerated(EnumType.STRING)
     private RolNombre rolNombre;
 

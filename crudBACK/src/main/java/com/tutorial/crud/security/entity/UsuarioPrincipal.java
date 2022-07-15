@@ -1,9 +1,5 @@
 package com.tutorial.crud.security.entity;
 
-//Clase encargada de seguridad
-//privilegios de cada usuario
-
-
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,6 +8,8 @@ import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
+//Clase encargada de seguridad
+//privilegios de cada usuario
 public class UsuarioPrincipal implements UserDetails {
     private String nombre;
     private String nombreUsuario;
@@ -27,13 +25,12 @@ public class UsuarioPrincipal implements UserDetails {
         this.authorities = authorities;
     }
 
-
     // Asignar privilegios a cada usuario
     public static UsuarioPrincipal build(Usuario usuario){
         //conversion de la clase Rol  ->  clase GrantedAuthority
         List<GrantedAuthority> authorities =
                 usuario.getRoles().stream().map(rol -> new SimpleGrantedAuthority(rol
-                        .getRolNombre().name())).collect(Collectors.toList());
+                .getRolNombre().name())).collect(Collectors.toList());
 
         // Devolvemos un usuario Principal y pasamos los campos del usuario
         return new UsuarioPrincipal(usuario.getNombre(), usuario.getNombreUsuario(), usuario.getEmail(), usuario.getPassword(), authorities);
@@ -41,7 +38,6 @@ public class UsuarioPrincipal implements UserDetails {
 
 
     //metodos implementados de UserDetail
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return authorities;

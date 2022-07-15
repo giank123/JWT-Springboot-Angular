@@ -1,11 +1,10 @@
 package com.tutorial.crud.security.dto;
 
-//Utilizar en el momento de hacer un login , responseEntity del controlador
-
 import org.springframework.security.core.GrantedAuthority;
 
 import java.util.Collection;
 
+//Utilizar en el momento de hacer un login , responseEntity del controlador
 public class JwtDto {
     private String token;
     private String bearer = "Bearer";

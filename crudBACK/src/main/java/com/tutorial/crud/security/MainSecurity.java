@@ -2,7 +2,7 @@ package com.tutorial.crud.security;
 
 import com.tutorial.crud.security.jwt.JwtEntryPoint;
 import com.tutorial.crud.security.jwt.JwtTokenFilter;
-import com.tutorial.crud.security.service.UserDetailServiceImpl;
+import com.tutorial.crud.security.service.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,11 +24,12 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 public class MainSecurity extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    UserDetailServiceImpl userDetailService;
+    UserDetailsServiceImpl userDetailsService;
 
     @Autowired
     JwtEntryPoint jwtEntryPoint;
 
+    @Bean
     public JwtTokenFilter jwtTokenFilter(){
         return new JwtTokenFilter();
     }
@@ -42,8 +43,7 @@ public class MainSecurity extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         //obtener el usuario y //cifrar la contraseña
-        auth.userDetailsService(userDetailService)
-                .passwordEncoder(passwordEncoder());
+        auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
     }
 
     @Bean
@@ -59,17 +59,16 @@ public class MainSecurity extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-       http.cors().and().csrf().disable()
-               .authorizeRequests()
-               .antMatchers("/auth/**").permitAll()
-               .anyRequest().authenticated()
-               .and()
-               .exceptionHandling().authenticationEntryPoint(jwtEntryPoint)
-               .and()
-               .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS); //Sin estado xk no usamo cookies.
+        http.cors().and().csrf().disable()
+                .authorizeRequests()
+                .antMatchers("/auth/**").permitAll()
+                .anyRequest().authenticated()
+                .and()
+                .exceptionHandling().authenticationEntryPoint(jwtEntryPoint)
+                .and()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS); //Sin estado xk no usamo cookies.
 
-       //Por cada peticion verificara el token y pasara el usuario al contexto de autentificacion.
+        //Por cada peticion verificara el token y pasara el usuario al contexto de autentificacion.
         http.addFilterBefore(jwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
-
     }
 }
