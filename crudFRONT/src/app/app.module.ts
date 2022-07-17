@@ -7,6 +7,7 @@ import { ListaProductoComponent } from './producto/lista-producto.component';
 import { DetalleProductoComponent } from './producto/detalle-producto.component';
 import { NuevoProductoComponent } from './producto/nuevo-producto.component';
 import { EditarProductoComponent } from './producto/editar-producto.component';
+import { interceptorProvider } from './interceptors/prod-interceptors.service';
 
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
@@ -40,7 +41,7 @@ import { IndexComponent } from './index/index.component';
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [interceptorProvider],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

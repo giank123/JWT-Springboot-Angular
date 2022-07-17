@@ -1,3 +1,4 @@
+import { TokenService } from './../service/token.service';
 import { Component, OnInit } from '@angular/core';
 import { Producto } from '../models/producto';
 import { ProductoService } from '../service/producto.service';
@@ -12,13 +13,31 @@ export class ListaProductoComponent implements OnInit {
 
   productos: Producto[] = [];
 
+  // Para token
+  roles: string[];
+  authority: string;
+  isAdmin = false;
+
   constructor(
     private productoService: ProductoService,
-    private toastr: ToastrService
-    ) { }
+    private toastr: ToastrService,
+
+    // Para token
+    private tokenService: TokenService
+    //////////////////////
+  ) { }
 
   ngOnInit() {
     this.cargarProductos();
+
+    // Para token
+    this.roles = this.tokenService.getAuthorities();
+    this.roles.forEach(rol => {
+      if (rol === 'ROLE_ADMIN') {
+        this.isAdmin = true;
+      }
+    });
+    ///////////////////////////////
   }
 
   cargarProductos(): void {
@@ -42,7 +61,7 @@ export class ListaProductoComponent implements OnInit {
       },
       err => {
         this.toastr.error(err.error.mensaje, 'Fail', {
-          timeOut: 3000,  positionClass: 'toast-top-center',
+          timeOut: 3000, positionClass: 'toast-top-center',
         });
       }
     );

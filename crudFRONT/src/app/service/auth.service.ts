@@ -12,13 +12,13 @@ export class AuthService {
 
   authURL = 'http://localhost:8080/auth/';
 
-  constructor(private HttpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) { }
 
   public nuevo(nuevoUsuario: NuevoUsuario): Observable<any> {
-    return this.HttpClient.post<any>(this.authURL + 'nuevo', nuevoUsuario);
+    return this.httpClient.post<any>(this.authURL + 'nuevo', nuevoUsuario);
   }
 
   public login(loginUsuario: LoginUsuario): Observable<JwtDTO> {
-    return this.HttpClient.post<JwtDTO>(this.authURL + 'nuevo', loginUsuario);
+    return this.httpClient.post<JwtDTO>(this.authURL + 'login', loginUsuario);
   }
 }
