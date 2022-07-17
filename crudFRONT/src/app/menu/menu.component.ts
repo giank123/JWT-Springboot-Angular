@@ -9,21 +9,17 @@ import { Component, OnInit } from '@angular/core';
 export class MenuComponent implements OnInit {
 
   isLogged = false;
+  isAdmin = false;
 
   constructor(private tokenService: TokenService) { }
 
   ngOnInit() {
-    if (this.tokenService.getToken()) {
-      this.isLogged = true;
-    } else {
-      this.isLogged = false;
-    }
+    this.isLogged = this.tokenService.isLogged();
+    this.isAdmin = this.tokenService.IsAdmin();
   }
 
   onLogout(): void {
     this.tokenService.logOut();
-    //como un F5 (refresca la pagina)
-    window.location.reload();
   }
 
 }

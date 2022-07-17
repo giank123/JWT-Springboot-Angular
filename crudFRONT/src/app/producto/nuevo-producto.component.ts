@@ -18,7 +18,7 @@ export class NuevoProductoComponent implements OnInit {
     private productoService: ProductoService,
     private toastr: ToastrService,
     private router: Router
-    ) { }
+  ) { }
 
   ngOnInit() {
   }
@@ -34,9 +34,8 @@ export class NuevoProductoComponent implements OnInit {
       },
       err => {
         this.toastr.error(err.error.mensaje, 'Fail', {
-          timeOut: 3000,  positionClass: 'toast-top-center',
+          timeOut: 3000, positionClass: 'toast-top-center',
         });
-        //this.router.navigate(['/']);
       }
     );
   }

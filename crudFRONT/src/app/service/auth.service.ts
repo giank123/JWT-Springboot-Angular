@@ -4,13 +4,13 @@ import { Observable } from 'rxjs';
 import { NuevoUsuario } from './../models/nuevo-usuario';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-
-  authURL = 'http://localhost:8080/auth/';
+  authURL = environment.authURL;
 
   constructor(private httpClient: HttpClient) { }
 
