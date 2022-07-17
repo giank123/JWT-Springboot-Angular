@@ -42,8 +42,15 @@
     "password":"user"
 }
 ```
+2. RefreshToken: http://localhost:8080/auth/refresh
+Copiar el token anterior. para la generacion del nuevo token
+ ```bash
+{
+    "token": "eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJ1c2VyIiwicm9sZXMiOlsiUk9MRV9VU0VSIl0sImlhdCI6MTY1ODA5MzQ5MSwiZXhwIjoxNjU4MDkzNTExfQ.kqVAlwJQPqjLcCDw4UkQjEk6bzXCWi709N24r5EmrfjZKikWJJiSIVRMFkITCJpfgzXAOgUCvWYOnWiFpSuWOA"
+}
+```
 
-## Products
+## Products (ponemos el token del logueo en Authorization)
 1. Create: http://localhost:8080/producto/create
  ```bash
   {
